@@ -450,6 +450,44 @@ $ grunt
 
 It will run a build and display one Spec-style report for the node.js and two Dot-style reports for both the plain and minified browser tests (via phantomJS). You can also use your own browser to manually run the suites by opening [`test/index.html`](http://geraintluff.github.io/tv4/test/index.html) and [`test/index-min.html`](http://geraintluff.github.io/tv4/test/index-min.html).
 
+## NodeJS example
+
+```js
+const tv4 = require("./t4");
+
+const schema = {
+  "required": [ "latitude", "longitude" ],
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    }
+  }
+};
+
+const data = {
+  "latitude": 48.858093,
+  "longitude": 2.294694,
+};
+
+const data2 = {
+  "latitude": 48.858093,
+};
+
+var valid = tv4.validate(data, schema);
+var valid2 = tv4.validate(data2, schema);
+
+console.log(valid);
+console.log(valid2);
+```
+
 ## Contributing
 
 Pull-requests for fixes and expansions are welcome. Edit the partial files in `/source` and add your tests in a suitable suite or folder under `/test/tests` and run `grunt` to rebuild and run the test suite. Try to maintain an idiomatic coding style and add tests for any new features. It is recommend to discuss big changes in an Issue.
