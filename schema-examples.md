@@ -5,7 +5,7 @@ This example provides a typical minimum you are likely to see in JSON Schema. It
 * [`$id`](http://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.1) keyword
 * [`$schema`](http://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.1.1) keyword
 * [`title`](http://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1) annotation keyword
-* [`type`](http://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.1.1) instance data model
+* [`type`](http://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.1.1) instance data model. It must be one of the six primitive types ("null", "boolean", "object", "array", "number", or "string"), or "integer" which matches any number with a zero fractional part. 
 * [`properties`](http://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.10.3.2.1) validation keyword
 * Three keys: `firstName`, `lastName` and `age` each with their own:
   * [`description`](http://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1) annotation keyword.
