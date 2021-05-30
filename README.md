@@ -455,6 +455,11 @@ It will run a build and display one Spec-style report for the node.js and two Do
 ```js
 const tv4 = require("./t4");
 
+/*
+    "oneOf" is used in JSON schema to specify one of values for a property.
+    Here we are using it to check if either of two properties exists.
+    Validation fails if both country or state property is not added.
+*/
 const schema = {
   "required": [ "latitude", "longitude" ],
   "type": "object",
@@ -468,24 +473,46 @@ const schema = {
       "type": "number",
       "minimum": -180,
       "maximum": 180
-    }
-  }
+    },
+    "country": { "type": "string" },
+    "state": { "type": "string" },
+  },
+  "oneOf": [
+    {"required": ["country"]},
+    {"required": ["state"]}
+  ]
 };
 
 const data = {
   "latitude": 48.858093,
   "longitude": 2.294694,
+  "country": "India"
 };
 
 const data2 = {
+  "latitude": 48.858093,
+  "longitude": 2.294694,
+  "state": "Mumbai"
+};
+
+const data3 = {
+  "latitude": 48.858093,
+  "longitude": 2.294694
+};
+
+const data4 = {
   "latitude": 48.858093,
 };
 
 var valid = tv4.validate(data, schema);
 var valid2 = tv4.validate(data2, schema);
+var valid3 = tv4.validate(data3, schema);
+var valid4 = tv4.validate(data4, schema);
 
 console.log(valid);
 console.log(valid2);
+console.log(valid3);
+console.log(valid4);
 ```
 
 ## Contributing
